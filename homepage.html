@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEOprohu - White Label SEO & Digital Marketing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #5b4fe0;
+            --dark-bg: #1a1a2e;
+            --light-gray: #f5f5f5;
+            --text-dark: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        .btn-cta {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-cta:hover {
+            background: #4a3fc4;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background: #4a3fc4;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-dark);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .seo-badge {
+            display: inline-block;
+            border: 2px solid var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 4rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(91, 79, 224, 0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #f0ebff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #4a3fc4;
+        }
+
+        .service-card.featured {
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(91, 79, 224, 0.15);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .pricing-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(91, 79, 224, 0.15);
+        }
+
+        .pricing-card.featured {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card.featured p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            margin-bottom: 0.7rem;
+            font-size: 0.95rem;
+        }
+
+        .pricing-card .btn-primary {
+            width: 100%;
+        }
+
+        .pricing-card.featured .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        .pricing-card.featured .btn-primary:hover {
+            background: #f0f0f0;
+        }
+
+        /* SEO Solutions Section */
+        .seo-solutions {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .seo-solutions h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .seo-solutions p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .seo-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 5px 15px rgba(91, 79, 224, 0.1);
+        }
+
+        .feature-box h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-box p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .seo-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .testimonials h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(91, 79, 224, 0.1);
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .author-name {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .author-title {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .faq-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-blue);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--text-dark);
+            background: #fafafa;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+        }
+
+        .faq-item.open .faq-answer {
+            padding: 1.5rem;
+            max-height: 300px;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Contact Form Section */
+        .contact-section {
+            background: linear-gradient(135deg, #5b4fe0 0%, #3d2fa3 100%);
+            padding: 3rem 2rem;
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-section p {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section ul li a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(91, 79, 224, 0.2);
+            border-radius: 50%;
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero, .seo-solutions, .faq-section {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-bolt"></i> SEOprohub
+            </div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#product">Services</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+                <button class="btn-cta">Get Started</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="seo-badge">SEO</div>
+            <h1>Drive results with our white label SEO and direct response digital marketing</h1>
+            <p>We are an army of experts that specialize in modern digital marketing techniques that help you to grow your business with cutting-edge.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary">Contact Us</button>
+                <button class="btn-secondary">Discover More</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="ceo.jpg" alt="Professional working on laptop">
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="section-container">
+            <h2 class="section-title">Specializing in cutting-edge digital marketing strategies</h2>
+            <p class="section-subtitle">We are a dedicated digital marketing Agency committed to your business growth and success where your success and growth is our focus.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>White Hat SEO</h3>
+                    <p>By carefully researching keywords and utilizing white-hat techniques, we deliver the best SEO solutions.</p>
+                    <a href="#" class="read-more">READ MORE →</a>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Search Engine Marketing</h3>
+                    <p>By carefully researching keywords and utilizing white-hat techniques, we deliver the best SEO solutions.</p>
+                    <a href="#" class="read-more">READ MORE →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-share-alt"></i></div>
+                    <h3>Social Media Marketing</h3>
+                    <p>By carefully researching keywords and utilizing white-hat techniques, we deliver the best SEO solutions.</p>
+                    <a href="#" class="read-more">READ MORE →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-link"></i></div>
+                    <h3>Keyword Ranking</h3>
+                    <p>By carefully researching keywords and utilizing white-hat techniques, we deliver the best SEO solutions.</p>
+                    <a href="#" class="read-more">READ MORE →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-bar-chart"></i></div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>By carefully researching keywords and utilizing white-hat techniques, we deliver the best SEO solutions.</p>
+                    <a href="#" class="read-more">READ MORE →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h3>Technical SEO</h3>
+                    <p>By carefully researching keywords and utilizing white-hat techniques, we deliver the best SEO solutions.</p>
+                    <a href="#" class="read-more">READ MORE →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Solutions -->
+    <section class="seo-solutions">
+        <div>
+            <h2>Affordable and customized SEO solutions for all.</h2>
+            <p>One of the best aspects of the template is not the template itself, but the support that comes along with it. Don't take our word for it. Hundreds of reviews from our customers say so.</p>
+            
+            <div class="seo-features">
+                <div class="feature-box">
+                    <h4>SEO Consulting</h4>
+                    <p>SEO consulting services provide strategic guidance on keyword research, technical SEO audits, content optimization.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Keyword Ranking</h4>
+                    <p>Improve your website's visibility on search engines with our comprehensive keyword ranking strategies.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Web and Mobile Optimization</h4>
+                    <p>Ensure your website performs perfectly on all devices with our optimization services.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="seo-image">
+            <img src="SEO.jpg" alt="Team meeting discussing SEO strategy">
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2>What Customer Says</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Since implementing SEO strategies from this agency, we've seen a significant increase in our organic traffic. Highly recommend!"</p>
+                <div class="testimonial-author">
+                    <div class="author-name">Catherine Jones</div>
+                    <div class="author-title">Founder</div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"The step-by-step guides and practical advice have been instrumental in improving our website's performance. Highly recommend!"</p>
+                <div class="testimonial-author">
+                    <div class="author-name">Michael David</div>
+                    <div class="author-title">Founder</div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"We've experienced a noticeable improvement in our website's visibility. This agency has been a game-changer for our business!"</p>
+                <div class="testimonial-author">
+                    <div class="author-name">Nathalie Kett</div>
+                    <div class="author-title">Founder</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="section-container">
+            <h2 class="section-title">All-In-One SEO & Marketing</h2>
+            <p class="section-subtitle">Reporting Your Progress</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$30</div>
+                    <p>/month</p>
+                    <ul class="pricing-features">
+                        <li>✓ Up to 5 Keywords</li>
+                        <li>✓ Monthly Reports</li>
+                        <li>✓ Email Support</li>
+                    </ul>
+                    <button class="btn-primary">Choose Plan</button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$50</div>
+                    <p>/month</p>
+                    <ul class="pricing-features">
+                        <li>✓ Up to 15 Keywords</li>
+                        <li>✓ Bi-weekly Reports</li>
+                        <li>✓ Chat Support</li>
+                    </ul>
+                    <button class="btn-primary">Choose Plan</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">$80</div>
+                    <p>/month</p>
+                    <ul class="pricing-features">
+                        <li>✓ Unlimited Keywords</li>
+                        <li>✓ Weekly Reports</li>
+                        <li>✓ Priority Support</li>
+                    </ul>
+                    <button class="btn-primary">Choose Plan</button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <div class="price">$100</div>
+                    <p>/month</p>
+                    <ul class="pricing-features">
+                        <li>✓ All Pro Features</li>
+                        <li>✓ Daily Reports</li>
+                        <li>✓ Dedicated Manager</li>
+                    </ul>
+                    <button class="btn-primary">Choose Plan</button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$200</div>
+                    <p>/month</p>
+                    <ul class="pricing-features">
+                        <li>✓ Custom Solutions</li>
+                        <li>✓ Real-time Analytics</li>
+                        <li>✓ 24/7 Support</li>
+                    </ul>
+                    <button class="btn-primary">Choose Plan</button>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-primary" style="background: var(--primary-blue);">Compare All Plans</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-content">
+            <h2>FAQ About SEO & Services</h2>
+            <p>They consider various factors, including website content, structure, and user experience, to determine which sites are most relevant to a user's search query.</p>
+            
+            <div class="faq-list">
+                <div class="faq-item open">
+                    <div class="faq-question">
+                        <span>What are the key factors that influence SEO?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ensuring website is technically sound, with fast loading speeds, mobile-friendliness, and proper site architecture is critical. Quality content, backlinks, and user experience also play important roles.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does it take to see SEO results?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>SEO results typically take 3-6 months to become noticeable, depending on competition and implementation. Some improvements can be seen within weeks, but significant ranking changes take longer.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How much do your SEO services cost?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our SEO services are customized to your needs and business goals. We offer packages starting from competitive rates. Contact us for a personalized quote based on your requirements.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Why should I choose your company for SEO services?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer proven strategies, transparent reporting, and dedicated support. Our team has years of experience helping businesses achieve top search rankings and sustainable growth online.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-image">
+            <img src="picture 1.jpg" alt="FAQ illustration">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">Get Your Free SEO Audit</h2>
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="website">Your Website</label>
+                    <input type="url" id="website" name="website" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your project</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%;">Get Free Audit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="color: var(--primary-blue); font-size: 1.5rem; margin-bottom: 1rem;">
+                    <i class="fas fa-bolt"></i> SEOprohub
+                </div>
+                <p>We are a team of experienced SEO professionals dedicated to delivering results. Our focus is on helping your business achieve online goals and grow.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Best Service</h3>
+                <ul>
+                    <li><a href="#">White Hat SEO</a></li>
+                    <li><a href="#">Search Engine Marketing</a></li>
+                    <li><a href="#">Pay Per Click</a></li>
+                    <li><a href="#">Social Media</a></li>
+                    <li><a href="#">Content Marketing</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">product</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><strong>Call:</strong> +1 258-369-1470</p>
+                <p><strong>E-mail:</strong> SEOprohub@gmail.com</p>
+                <p><strong>Address:</strong><br>3552 W 41st Ave, Vancouver<br>BC V6N 3E6, Canada</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 SEOprohub. All Rights Reserved.</p>
+            <div>
+                <a href="#" style="color: #999; text-decoration: none; margin-left: 2rem;">Privacy Policy</a>
+                <a href="#" style="color: #999; text-decoration: none; margin-left: 2rem;">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('open');
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Form Submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            console.log('Form submitte
