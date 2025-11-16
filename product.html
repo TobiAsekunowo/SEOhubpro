@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - SEOprohub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #5b4fe0;
+            --secondary-purple: #7c3aed;
+            --dark-bg: #1a1a2e;
+            --light-gray: #f5f5f5;
+            --light-purple: #f3f0ff;
+            --text-dark: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-blue);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .product-hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background: #4a3fc4;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(91, 79, 224, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            border: 2px solid var(--primary-blue);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Filter Tabs */
+        .filter-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+        }
+
+        .filter-tabs::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .filter-tabs::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 10px;
+        }
+
+        .filter-tab {
+            background: white;
+            color: var(--text-dark);
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Products Grid */
+        .products-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .product-card.visible {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(91, 79, 224, 0.15);
+        }
+
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-purple);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .product-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .product-pricing {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .price-tag {
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .product-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .product-link:hover {
+            color: #4a3fc4;
+            text-decoration: underline;
+        }
+
+        /* Featured Products Section */
+        .featured-section {
+            background: var(--light-purple);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .featured-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(91, 79, 224, 0.2);
+        }
+
+        .featured-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin: 0 auto 1.5rem;
+        }
+
+        .featured-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-card p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            color: white;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-table th {
+            font-size: 1.1rem;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: var(--light-purple);
+        }
+
+        .comparison-table .feature-name {
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .check-icon {
+            color: #10b981;
+            font-size: 1.3rem;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .testimonial-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .testimonial-text {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            display: flex;
+        }
+
+        .scroll-top:hover {
+            background: #4a3fc4;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .product-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                align-items: flex-start;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-bolt"></i> SEOprohub
+            </div>
+            <nav id="nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="product.html" class="active">Product</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="product-hero">
+        <div class="hero-content">
+            <h1>Explore Our SEO Tools & Digital Products</h1>
+            <p>Unlock your website's potential with our complete suite of SEO solutions, designed for every business size and need.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">Browse All Tools</a>
+                <a href="#" class="btn-secondary">Compare Products</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Team working">
+        </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="filter-section">
+        <div class="filter-tabs">
+            <div class="filter-tab active" data-filter="all">All Tools</div>
+            <div class="filter-tab" data-filter="seo">SEO Tools</div>
+            <div class="filter-tab" data-filter="keyword">Keyword Research Tools</div>
+            <div class="filter-tab" data-filter="analytics">Analytics & Tracking Tools</div>
+            <div class="filter-tab" data-filter="reporting">Reporting & Analytics</div>
+            <div class="filter-tab" data-filter="content">Content & SEO Tools</div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="products-grid" id="productsGrid">
+            <!-- Product Cards -->
+            <div class="product-card" data-category="seo analytics">
+                <div class="product-icon"><i class="fas fa-desktop"></i></div>
+                <h3>Site Health Monitor</h3>
+                <p>Monitor and optimize your website's performance with real-time insights.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Free Trial</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="seo">
+                <div class="product-icon"><i class="fas fa-check-circle"></i></div>
+                <h3>Technical SEO Checker</h3>
+                <p>Comprehensive technical SEO audit for identifying and fixing issues.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Premium</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="content">
+                <div class="product-icon"><i class="fas fa-file-alt"></i></div>
+                <h3>On-Page Optimizer</h3>
+                <p>Optimize your content for better search engine rankings.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Pro</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="analytics">
+                <div class="product-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Content Gap Analyzer</h3>
+                <p>Discover content opportunities and fill gaps in your strategy.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Enterprise</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="keyword">
+                <div class="product-icon"><i class="fas fa-search"></i></div>
+                <h3>Keyword Research Pro</h3>
+                <p>Find profitable keywords with accurate search volume and difficulty data.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Premium</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="seo">
+                <div class="product-icon"><i class="fas fa-trophy"></i></div>
+                <h3>SERP Monitor</h3>
+                <p>Track your search rankings across multiple search engines daily.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Pro</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="analytics">
+                <div class="product-icon"><i class="fas fa-chart-bar"></i></div>
+                <h3>Long Tail Generator</h3>
+                <p>Generate hundreds of long-tail keyword variations for better targeting.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Free Trial</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="keyword reporting">
+                <div class="product-icon"><i class="fas fa-compass"></i></div>
+                <h3>Keyword Difficulty Scorer</h3>
+                <p>Assess keyword difficulty to find quick wins for your SEO strategy.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Premium</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="seo">
+                <div class="product-icon"><i class="fas fa-link"></i></div>
+                <h3>Backlink Profile Builder</h3>
+                <p>Build and manage high-quality backlinks for domain authority.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Pro</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="seo analytics">
+                <div class="product-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Domain Authority Score</h3>
+                <p>Track and improve your website's domain authority over time.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Free Trial</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="analytics">
+                <div class="product-icon"><i class="fas fa-chart-area"></i></div>
+                <h3>Link Intersect Analyzer</h3>
+                <p>Find link opportunities where competitors have backlinks but you don't.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Enterprise</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="reporting">
+                <div class="product-icon"><i class="fas fa-clipboard-check"></i></div>
+                <h3>Rank Tracking Assistant</h3>
+                <p>Identify and fix technical SEO issues quickly and efficiently.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Premium</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="reporting">
+                <div class="product-icon"><i class="fas fa-chart-pie"></i></div>
+                <h3>On-Site SEO Dashboard</h3>
+                <p>Complete on-page SEO analysis with actionable recommendations.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Premium</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="analytics">
+                <div class="product-icon"><i class="fas fa-project-diagram"></i></div>
+                <h3>Rank Tracking Dashboard</h3>
+                <p>Monitor keyword rankings with visual charts and insights.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Enterprise</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="reporting">
+                <div class="product-icon"><i class="fas fa-file-invoice"></i></div>
+                <h3>SEO & Analytics Insights</h3>
+                <p>Deep-dive analytics to track performance across your campaigns.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Premium</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="seo">
+                <div class="product-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Local Listing Builder</h3>
+                <p>Manage and optimize local business listings across directories.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Pro</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="seo">
+                <div class="product-icon"><i class="fas fa-globe"></i></div>
+                <h3>Geo-Targeting Optimizer</h3>
+                <p>Optimize your content for specific geographic locations and markets.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Premium</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="content">
+                <div class="product-icon"><i class="fas fa-pen"></i></div>
+                <h3>Content & Writer</h3>
+                <p>AI-powered content generation for SEO-optimized articles and blogs.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Pro</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="analytics">
+                <div class="product-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3>Readability Enhancer</h3>
+                <p>Improve content readability for better user engagement and SEO.</p>
+                <div class="product-pricing">
+                    <span class="price-tag">Pro</span>
+                    <a href="#" class="product-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-section">
+        <div class="section-container">
+            <h2 class="section-title">Our Featured Products</h2>
+            <p class="section-subtitle">Explore our top-tier SEO solutions designed to deliver exceptional results and elevate your digital strategy.</p>
+            
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="featured-icon"><i class="fas fa-star"></i></div>
+                    <h3>Advanced SEO Audit Tool</h3>
+                    <p>Dive deep into technical SEO audit with powerful site crawling and vulnerability scanning with our advanced tool.</p>
+                    <a href="#" class="btn-primary">Explore More</a>
+                </div>
+
+                <div class="featured-card">
+                    <div class="featured-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>AI-Powered Backlink Builder</h3>
+                    <p>Automate high-quality backlink outreach with personalized campaigns and competitor analysis.</p>
+                    <a href="#" class="btn-primary">Explore More</a>
+                </div>
+
+                <div class="featured-card">
+                    <div class="featured-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Real-time Rank Tracker</h3>
+                    <p>Monitor your keyword positions across all major search engines in real time.</p>
+                    <a href="#" class="btn-primary">Explore More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison-section">
+        <div class="section-container">
+            <h2 class="section-title">Compare Our SEO Tools</h2>
+            <p class="section-subtitle">Side-by-side comparison of our powerful SEO tools suite to help you choose the perfect solution for your needs.</p>
+            
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>SEO Audit Tool</th>
+                            <th>Keyword Planner</th>
+                            <th>Backlink Builder</th>
+                            <th>Rank Tracker</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name">Site Audit</td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Keyword Suggestions</td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Link Analysis</td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Competitor Analysis</td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Local SEO Features</td>
+                            <td></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Content Reporting</td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">API Access</td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Custom Dashboards</td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Dark Tracking</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class="fas fa-check check-icon"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Hear directly from businesses who have achieved remarkable growth with SEOprohub tools with SEOprohub.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">JD</div>
+                        <div class="testimonial-info">
+                            <h4>John Doe</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"SEOprohub has been a game-changer for our business. The tools are intuitive, and the results speak for themselves!"</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">SM</div>
+                        <div class="testimonial-info">
+                            <h4>Sarah Miller</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"We have seen a dramatic increase in traffic. The tools are so easy to use, and support has been fantastic!"</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">MC</div>
+                        <div class="testimonial-info">
+                            <h4>Mike Chen</h4>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"I can't recommend this highly enough. Our keyword rankings have improved massively, driving real business results."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>Ready to Improve Your SEO?</h2>
+            <p>Take the first step towards better rankings and visibility. Try our powerful tools today.</p>
+            <a href="#" class="btn-white">Start Free Audit</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SEOprohub. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        $(document).ready(function() {
+            // Mobile Menu Toggle
+            $('#mobileMenuToggle').click(function() {
+                $('#nav').toggleClass('active');
+                $(this).find('i').toggleClass('fa-bars fa-times');
+            });
+
+            // Close menu when clicking on a link
+            $('#nav a').click(function() {
+                if ($(window).width() <= 768) {
+                    $('#nav').removeClass('active');
+                    $('#mobileMenuToggle i').removeClass('fa-times').addClass('fa-bars');
+                }
+            });
+
+            // Header scroll effect
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('#header').addClass('scrolled');
+                } else {
+                    $('#header').removeClass('scrolled');
+                }
+
+                // Scroll to top button
+                if ($(this).scrollTop() > 300) {
+                    $('#scrollTop').addClass('visible');
+                } else {
+                    $('#scrollTop').removeClass('visible');
+                }
+            });
+
+            // Scroll to top
+            $('#scrollTop').click(function() {
+                $('html, body').animate({ scrollTop: 0 }, 600);
+            });
+
+            // Filter functionality
+            $('.filter-tab').click(function() {
+                const filter = $(this).data('filter');
+                
+                // Update active state
+                $('.filter-tab').removeClass('active');
+                $(this).addClass('active');
+
+                // Filter products
+                if (filter === 'all') {
+                    $('.product-card').fadeIn(400);
+                } else {
+                    $('.product-card').each(function() {
+                        const categories = $(this).data('category');
+                        if (categories && categories.includes(filter)) {
+                            $(this).fadeIn(400);
+                        } else {
+                            $(this).fadeOut(400);
+                        }
+                    });
+                }
+            });
+
+            // Intersection Observer for product cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry, index) {
+                    if (entry.isIntersecting) {
+                        setTimeout(function() {
+                            $(entry.target).addClass('visible');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all product cards
+            $('.product-card').each(function() {
+                observer.observe(this);
+            });
+
+            // Smooth scroll for anchor links
+            $('a[href^="#"]').click(function(e) {
+                const target = $(this.getAttribute('href'));
+                if (target.length) {
+                    e.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 80
+                    }, 600);
+                }
+            });
+
+            // Add hover effect to product cards
+            $('.product-card').hover(
+                function() {
+                    $(this).find('.product-icon').css('transform', 'scale(1.1)');
+                },
+                function() {
+                    $(this).find('.product-icon').css('transform', 'scale(1)');
+                }
+            );
+
+            // Add transition to product icons
+            $('.product-icon').css('transition', 'transform 0.3s ease');
+
+            // Animate featured cards on scroll
+            const featuredObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry, index) {
+                    if (entry.isIntersecting) {
+                        setTimeout(function() {
+                            $(entry.target).css({
+                                'opacity': '1',
+                                'transform': 'translateY(0)'
+                            });
+                        }, index * 150);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            $('.featured-card').css({
+                'opacity': '0',
+                'transform': 'translateY(30px)',
+                'transition': 'all 0.6s ease'
+            }).each(function() {
+                featuredObserver.observe(this);
+            });
+
+            // Animate testimonial cards
+            const testimonialObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry, index) {
+                    if (entry.isIntersecting) {
+                        setTimeout(function() {
+                            $(entry.target).css({
+                                'opacity': '1',
+                                'transform': 'translateY(0)'
+                            });
+                        }, index * 150);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            $('.testimonial-card').css({
+                'opacity': '0',
+                'transform': 'translateY(20px)',
+                'transition': 'all 0.5s ease'
+            }).each(function() {
+                testimonialObserver.observe(this);
+            });
+
+            // Add ripple effect to buttons
+            $('.btn-primary, .btn-secondary, .btn-white').click(function(e) {
+                const $button = $(this);
+                const $ripple = $('<span class="ripple-effect"></span>');
+                
+                const diameter = Math.max($button.outerWidth(), $button.outerHeight());
+                const radius = diameter / 2;
+                
+                const offset = $button.offset();
+                const x = e.pageX - offset.left - radius;
+                const y = e.pageY - offset.top - radius;
+                
+                $ripple.css({
+                    width: diameter,
+                    height: diameter,
+                    top: y + 'px',
+                    left: x + 'px'
+                });
+                
+                $button.append($ripple);
+                
+                setTimeout(function() {
+                    $ripple.remove();
+                }, 600);
+            });
+
+            // Add CSS for ripple effect
+            $('<style>')
+                .prop('type', 'text/css')
+                .html(`
+                    .ripple-effect {
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.6);
+                        transform: scale(0);
+                        animation: ripple-animation 0.6s ease-out;
+                        pointer-events: none;
+                    }
+                    @keyframes ripple-animation {
+                        to {
+                            transform: scale(2);
+                            opacity: 0;
+                        }
+                    }
+                    .btn-primary, .btn-secondary, .btn-white {
+                        position: relative;
+                        overflow: hidden;
+                    }
+                `)
+                .appendTo('head');
+
+            // Counter animation for stats (if you want to add stats section)
+            function animateCounter($element, target) {
+                $({ count: 0 }).animate({ count: target }, {
+                    duration: 2000,
+                    easing: 'swing',
+                    step: function() {
+                        $element.text(Math.floor(this.count));
+                    },
+                    complete: function() {
+                        $element.text(target);
+                    }
+                });
+            }
+
+            // Lazy loading for images
+            $('img').each(function() {
+                const $img = $(this);
+                $img.on('load', function() {
+                    $img.addClass('loaded');
+                });
+            });
+
+            // Add parallax effect to hero section (optional)
+            $(window).scroll(function() {
+                const scrolled = $(this).scrollTop();
+                $('.hero-image img').css('transform', 'translateY(' + (scrolled * 0.3) + 'px)');
+            });
+
+            // Search functionality (if you want to add search)
+            let searchTimeout;
+            $('#productSearch').on('input', function() {
+                clearTimeout(searchTimeout);
+                const searchTerm = $(this).val().toLowerCase();
+                
+                searchTimeout = setTimeout(function() {
+                    $('.product-card').each(function() {
+                        const title = $(this).find('h3').text().toLowerCase();
+                        const description = $(this).find('p').text().toLowerCase();
+                        
+                        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                            $(this).fadeIn(300);
+                        } else {
+                            $(this).fadeOut(300);
+                        }
+                    });
+                }, 300);
+            });
+
+            // Price filter toggle (if you want to add price filtering)
+            $('.price-tag').click(function(e) {
+                e.stopPropagation();
+                const priceType = $(this).text().toLowerCase();
+                
+                $('.product-card').each(function() {
+                    const cardPrice = $(this).find('.price-tag').text().toLowerCase();
+                    if (cardPrice === priceType) {
+                        $(this).css('border-color', 'var(--primary-blue)');
+                    } else {
+                        $(this).css('border-color', 'var(--border-color)');
+                    }
+                });
+            });
+
+            // Table row highlight on hover
+            $('.comparison-table tbody tr').hover(
+                function() {
+                    $(this).css('background-color', 'var(--light-purple)');
+                },
+                function() {
+                    $(this).css('background-color', '');
+                }
+            );
+
+            // Add loading animation
+            $(window).on('load', function() {
+                $('.product-card, .featured-card').css('visibility', 'visible');
+            });
+
+            // Smooth scroll to products on "Browse All Tools" click
+            $('.hero-buttons a:first').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $('.products-section').offset().top - 100
+                }, 800);
+            });
+
+            // Smooth scroll to comparison on "Compare Products" click
+            $('.hero-buttons a:last').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $('.comparison-section').offset().top - 100
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
