@@ -46,14 +46,33 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+      
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1rem;
+    }
+
+    .logo-text {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      font-size: 1.1rem;
+    }
 
         nav {
             display: flex;
@@ -670,7 +689,8 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <i class="fas fa-bolt"></i> SEOprohub
+               <span class="logo-mark">S</span>
+        <span class="logo-text">SEOProhub</span>
             </div>
             <nav>
                 <a href="index.html">Home</a>
@@ -1051,5 +1071,6 @@
             const data = Object.fromEntries(formData);
 
             console.log('Form submitte
+
 
 
