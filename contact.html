@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SEOProhub – Contact Us</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-body: #f3f4f6;
+      --bg-section: #f5f5f5;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --border-soft: #e5e7eb;
+      --primary: #5b4df2;   /* purple like screenshot */
+      --primary-soft: #edeaff;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+      --shadow-md: 0 16px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * , *::before , *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 4rem 0;
+    }
+
+    /* ===== Header ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .header-inner {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1rem;
+    }
+
+    .logo-text {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      font-size: 1.1rem;
+    }
+
+    .nav-desktop {
+      display: flex;
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    .nav-desktop a {
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: #111827;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-desktop a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: var(--primary);
+      transition: width 0.18s ease;
+    }
+
+    .nav-desktop a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 36px;
+      height: 32px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .menu-line {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #111827;
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      border-top: 1px solid var(--border-soft);
+      background: #ffffff;
+    }
+
+    .nav-mobile-link {
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+      color: #111827;
+    }
+
+    .nav-mobile-link:hover {
+      background: #f3f4f6;
+    }
+
+    /* ===== Hero Contact ===== */
+    .hero-contact {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 3rem;
+      align-items: center;
+      padding: 3rem 0 3.5rem;
+    }
+
+    .hero-heading {
+      font-family: "Montserrat", sans-serif;
+      font-size: 2.6rem;
+      letter-spacing: -0.04em;
+      margin: 0 0 0.75rem;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 26rem;
+      line-height: 1.7;
+    }
+
+    .hero-image-card {
+      background: #f5f5f5;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* ===== Contact Form Card ===== */
+    .contact-form-section {
+      background: #f7f7f7;
+    }
+
+    .form-card {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 2.5rem 3rem 2.75rem;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .form-header h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.6rem;
+      margin: 0 0 0.4rem;
+    }
+
+    .form-header p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.85rem;
+      color: #4b5563;
+      margin-bottom: 0.25rem;
+    }
+
+    .field-input,
+    .field-textarea {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 0.6rem 0.9rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .field-textarea {
+      border-radius: 14px;
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .field-input:focus,
+    .field-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(91, 77, 242, 0.2);
+    }
+
+    .btn-submit {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.95rem;
+      padding: 0.75rem 1.4rem;
+      margin-top: 0.75rem;
+      cursor: pointer;
+      font-weight: 500;
+      box-shadow: 0 12px 28px rgba(91, 77, 242, 0.35);
+      transition: background 0.18s ease, transform 0.1s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .btn-submit:hover {
+      background: #4a3ee0;
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(74, 62, 224, 0.35);
+    }
+
+    /* ===== Get in Touch section ===== */
+    .touch-section {
+      background: #ffffff;
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .touch-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 2.5rem;
+      align-items: stretch;
+    }
+
+    .touch-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-soft);
+      padding: 2.2rem 2.3rem;
+    }
+
+    .touch-card h3 {
+      margin: 0 0 1.6rem;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.4rem;
+    }
+
+    .touch-item {
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+      margin-bottom: 1.2rem;
+    }
+
+    .touch-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .touch-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .touch-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .touch-image-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .touch-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-section {
+      background: #f8f8f8;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-header h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.7rem;
+      margin: 0 0 0.5rem;
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-soft);
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .faq-question-text {
+      margin-right: 1.5rem;
+    }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid #d4d4d8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #6b7280;
+      flex-shrink: 0;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 1.5rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-item.active .faq-icon {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* ===== Footer ===== */
+    .site-footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .footer-top {
+      padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 0.9fr));
+      gap: 2.2rem;
+    }
+
+    .footer-col h3 {
+      margin: 0 0 0.8rem;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1rem;
+    }
+
+    .footer-col p,
+    .footer-col li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .footer-text-small {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+    }
+
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-list li + li {
+      margin-top: 0.35rem;
+    }
+
+    .footer-list a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .footer-list a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #e5e7eb;
+      padding: 0.9rem 1.5rem 1.1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .hero-layout,
+      .touch-layout,
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-layout {
+        gap: 2.5rem;
+      }
+
+      .touch-image-card {
+        min-height: 260px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+
+      .section {
+        padding: 3rem 0;
+      }
+
+      .nav-desktop {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero-heading {
+        font-size: 2.2rem;
+      }
+
+      .form-card {
+        padding: 2rem 1.5rem 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-heading {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-mark">S</span>
+        <span class="logo-text">SEOProhub</span>
+      </div>
+
+      <nav class="nav-desktop">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">product</a>
+        <a href="#top-contact">Contact</a>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Toggle navigation">
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+      </button>
+    </div>
+
+    <nav class="nav-mobile">
+      <a href="#" class="nav-mobile-link">Home</a>
+      <a href="#" class="nav-mobile-link">About</a>
+      <a href="#" class="nav-mobile-link">Services</a>
+      <a href="#" class="nav-mobile-link">product</a>
+      <a href="#top-contact" class="nav-mobile-link">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top-contact">
+    <!-- HERO CONTACT -->
+    <section class="section hero-contact">
+      <div class="container hero-layout">
+        <div>
+          <h1 class="hero-heading">Let’s Work Together</h1>
+          <p class="hero-sub">
+            Have questions or need help with your SEO strategy?<br />
+            Reach out and our team will get back to you.
+          </p>
+        </div>
+        <div class="hero-image-card">
+          <img
+            class="hero-image"
+            src="https://images.pexels.com/photos/1181593/pexels-photo-1181593.jpeg"
+            alt="Team working together"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM CARD -->
+    <section class="section contact-form-section">
+      <div class="form-card">
+        <div class="form-header">
+          <h2>Send Us a Message</h2>
+          <p>Fill out the form below and we’ll get back to you as soon as possible.</p>
+        </div>
+
+        <form id="contact-form">
+          <div class="form-grid">
+            <div>
+              <label class="field-label" for="name">Name</label>
+              <input class="field-input" type="text" id="name" placeholder="Your Name" />
+            </div>
+            <div>
+              <label class="field-label" for="email">Email</label>
+              <input class="field-input" type="email" id="email" placeholder="your@email.com" />
+            </div>
+            <div>
+              <label class="field-label" for="subject">Subject</label>
+              <input class="field-input" type="text" id="subject" placeholder="Subject of your inquiry" />
+            </div>
+            <div>
+              <label class="field-label" for="message">Message</label>
+              <textarea class="field-textarea" id="message" placeholder="Type your message here."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- GET IN TOUCH SECTION -->
+    <section class="section touch-section">
+      <div class="container touch-layout">
+        <div class="touch-card">
+          <h3>Get in Touch</h3>
+
+          <div class="touch-item">
+            <div class="touch-icon">✉</div>
+            <div>
+              <div class="touch-label">Email</div>
+              <div class="touch-text">info@seoprohub.com</div>
+            </div>
+          </div>
+
+          <div class="touch-item">
+            <div class="touch-icon">📞</div>
+            <div>
+              <div class="touch-label">Phone</div>
+              <div class="touch-text">+1 (555) 123-4567</div>
+            </div>
+          </div>
+
+          <div class="touch-item">
+            <div class="touch-icon">📍</div>
+            <div>
+              <div class="touch-label">Address</div>
+              <div class="touch-text">123 SEO Street, Digital City, CA 90210</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="touch-image-card">
+          <img
+            class="touch-image"
+            src="https://images.pexels.com/photos/37347/office-freelancer-computer-business-37347.jpeg"
+            alt="Modern office"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section faq-section">
+      <div class="container">
+        <div class="faq-header">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-question-text">How long does it take to see results?</span>
+              <span class="faq-icon">⌄</span>
+            </div>
+            <div class="faq-answer">
+              Most clients begin to see noticeable improvements in rankings and traffic within 3–6 months,
+              depending on the competitiveness of their industry and the current state of their website.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-question-text">What makes SEOProhub different from other agencies?</span>
+              <span class="faq-icon">⌄</span>
+            </div>
+            <div class="faq-answer">
+              We combine hands-on strategy, transparent reporting, and tailored campaigns focused on business
+              outcomes—not just vanity metrics. You’ll always know what we’re doing and why.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-question-text">Do you offer local SEO services?</span>
+              <span class="faq-icon">⌄</span>
+            </div>
+            <div class="faq-answer">
+              Yes. We optimize your Google Business Profile, local citations, and location pages to help you
+              appear in local search and map results for your service areas.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-question-text">Can I get a custom SEO package?</span>
+              <span class="faq-icon">⌄</span>
+            </div>
+            <div class="faq-answer">
+              Absolutely. After a quick discovery call and site review, we can design a custom package that
+              fits your goals, budget, and timeline.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span class="faq-question-text">How do you measure SEO success?</span>
+              <span class="faq-icon">⌄</span>
+            </div>
+            <div class="faq-answer">
+              We track organic traffic, keyword rankings, conversions, and leads, then tie those metrics back
+              to your business objectives so you can see the impact clearly.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-top container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <p class="footer-text-small">
+            Empowering businesses with smarter, affordable, and effective SEO solutions for sustainable growth.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-list">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#top-contact">Contact</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="footer-list">
+            <li>Email: info@seoprohub.com</li>
+            <li>Phone: +1 (555) 123-4567</li>
+            <li>Address: 123 SEO Street, Digital City, CA 90210</li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-text-small"></p>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 SEOProhub. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- jQuery + behaviour -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    jQuery(function($){
+      // mobile menu
+      $(".menu-toggle").on("click", function () {
+        $(".nav-mobile").slideToggle(160);
+      });
+
+      $(".nav-mobile-link").on("click", function () {
+        $(".nav-mobile").slideUp(160);
+      });
+
+      // smooth scroll for in-page links
+      $('a[href^="#"]').on("click", function (e) {
+        const targetId = $(this).attr("href");
+        if (!targetId || targetId === "#") return;
+        const target = $(targetId);
+        if (!target.length) return;
+        e.preventDefault();
+        const headerHeight = $(".site-header").outerHeight() || 0;
+        $("html, body").animate(
+          { scrollTop: target.offset().top - headerHeight - 8 },
+          350
+        );
+      });
+
+      // contact form fake submit
+      $("#contact-form").on("submit", function (e) {
+        e.preventDefault();
+        alert("Thanks! Your message has been sent. We'll get back to you shortly.");
+        this.reset();
+      });
+
+      // FAQ accordion
+      $(".faq-question").on("click", function () {
+        const item = $(this).closest(".faq-item");
+        const isActive = item.hasClass("active");
+
+        // close others
+        $(".faq-item").removeClass("active");
+        $(".faq-answer").slideUp(150);
+
+        if (!isActive) {
+          item.addClass("active");
+          item.find(".faq-answer").slideDown(150);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
