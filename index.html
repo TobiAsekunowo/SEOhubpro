@@ -47,32 +47,21 @@
         }
 
       
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+   
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
 
-    .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-weight: 700;
-      font-family: "Montserrat", sans-serif;
-      font-size: 1rem;
-    }
-
-    .logo-text {
-      font-family: "Montserrat", sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      font-size: 1.1rem;
-    }
+        .logo:hover {
+            transform: scale(1.05);
+        }
 
         nav {
             display: flex;
@@ -686,21 +675,22 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        <span class="logo-mark">S</span>
-        <span class="logo-text">SEOProhub</span>
-      </div>
-           
-        <nav>
+     <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <i class="fas fa-bolt"></i> SEOprohub
+            </div>
+            <nav id="nav">
                 <a href="index.html">Home</a>
-                <a href="service.html">Services</a>
-                <a href="product.html">product</a>
-                <a href="about.html">About Us</a>
+                <a href="about.html" class="active">About</a>
+                <a href="services.html">Services</a>
+                <a href="product.html">Product</a>
                 <a href="contact.html">Contact</a>
-                <button class="btn-cta">Get Started</button>
             </nav>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
@@ -1072,6 +1062,7 @@
             const data = Object.fromEntries(formData);
 
             console.log('Form submitte
+
 
 
 
